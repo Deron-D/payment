@@ -1,4 +1,7 @@
-FROM golang:1.7
+FROM golang:1.11
+
+RUN apt-get update && \
+    apt-get install ca-certificates libgnutls30 -y
 
 COPY . /go/src/github.com/microservices-demo/payment/
 
