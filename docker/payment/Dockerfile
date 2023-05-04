@@ -1,4 +1,4 @@
-FROM golang:1.11
+FROM gitlab.84.201.150.198.sslip.io:443/gitlab-instance-711bf56d/dependency_proxy/containers/golang:1.11
 
 RUN apt-get update && \
     apt-get install ca-certificates libgnutls30 -y
@@ -10,7 +10,7 @@ RUN cd /go/src/github.com/microservices-demo/payment/ && gvt restore
 
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /app github.com/microservices-demo/payment/cmd/paymentsvc
 
-FROM alpine:3.4
+FROM gitlab.84.201.150.198.sslip.io:443/gitlab-instance-711bf56d/dependency_proxy/containers/alpine:3.4
 
 WORKDIR /
 COPY --from=0 /app /app
